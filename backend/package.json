@@ -1,9 +1,9 @@
 {"name": "mytodo-server",
   "version": "1.0.0",
   "description": "My Web To Do",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "node ./server/index.js",
     "test": "mocha ./server/tests/**/*.test.js"
   },
   "author": "Matthew McQuaid",

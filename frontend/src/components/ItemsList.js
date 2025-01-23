@@ -3,15 +3,25 @@ import React, {useState, useEffect} from 'react';
 const hostname = 'http://localhost:3010';
 
 const ItemsList = () => {
-    const [todos, setTodos] = useState();
+    const [todos, setTodos] = useState([]);
     const [newTask, setNewTask] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState('');
+    const [filteredToDos, setFilteredToDos] = useState(todos);
 
     useEffect(() => {
         fetchTodos();
     }, []);
     
+    useEffect(() => { 
+
+        const filteredToDos = todos.filter(todo => 
+          todo.task.toLowerCase().includes(search.toLowerCase())
+        );
+        setFilteredToDos(filteredToDos);
+  }, [search, todos]);
+
     const fetchTodos = async () => {
         setLoading(true);
         try {
@@ -85,13 +95,22 @@ const ItemsList = () => {
                 />
                 <button 
                     type='submit'
-                     data-testid="add-button"
+                     data-testid='add-button'
                 >
                     Add
                 </button>
                 {error && <div className='error' data-testid='error'>{error}</div>}
+                <div className='mb-4'>
+                <input
+                    type='text'
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder='search todo'
+                    className='flex-1 p-2 border rounded'
+                    ></input>
+            </div>
                 <ul>
-                    {todos?.map((todo) => (
+                    {filteredToDos?.map((todo) => (
                         <li key={todo.id}>
                             {todo.task}
                             <button

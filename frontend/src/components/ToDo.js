@@ -20,7 +20,7 @@ const todoReducer = (state, action) => {
 const ToDo = () => {
   const [todos, dispatch] = useReducer(todoReducer, []);
   const [input, setInput] = useState('');
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim()) {
@@ -29,40 +29,41 @@ const ToDo = () => {
     }
   };
 
+
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Todo List</h1>
+    <div className='max-w-md mx-auto p-6'>
+      <h1 className='text-2xl font-bold mb-4'>Todo List</h1>
       
-      <form onSubmit={handleSubmit} className="mb-4">
-        <div className="flex gap-2">
+      <form onSubmit={handleSubmit} className='mb-4'>
+        <div className='flex gap-2'>
           <input
-            type="text"
+            type='text'
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Add new todo"
-            className="flex-1 p-2 border rounded"
+            placeholder='Add new todo'
+            className='flex-1 p-2 border rounded'
           />
           <button 
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            type='submit'
+            className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
           >
             Add
           </button>
         </div>
       </form>
 
-      <ul className="space-y-2">
+      <ul className='space-y-2'>
         {todos.map(todo => (
           <li 
             key={todo.id}
-            className="flex items-center justify-between p-2 border rounded"
+            className='flex items-center justify-between p-2 border rounded'
           >
-            <div className="flex items-center gap-2">
+            <div className='flex items-center gap-2'>
               <input
-                type="checkbox"
+                type='checkbox'
                 checked={todo.completed}
                 onChange={() => dispatch({ type: 'TOGGLE_TODO', payload: todo.id })}
-                className="h-4 w-4"
+                className='h-4 w-4'
               />
               <span className={todo.completed ? 'line-through text-gray-500' : ''}>
                 {todo.text}
@@ -70,7 +71,7 @@ const ToDo = () => {
             </div>
             <button
               onClick={() => dispatch({ type: 'DELETE_TODO', payload: todo.id })}
-              className="text-red-500 hover:text-red-700"
+              className='text-red-500 hover:text-red-700'
             >
               <Trash2 size={16} />
             </button>

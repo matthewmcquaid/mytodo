@@ -1,10 +1,12 @@
 import express  from 'express';
 import bodyParser from 'body-parser';
+import helmet from 'helmet';
 import cors from 'cors';
 import logipaddress from './middleware/logipaddress.js';
 import { validationResult, query } from 'express-validator';
 
 const app = express();
+app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -92,6 +92,7 @@ const ItemsList = () => {
                     type='text' 
                     value={newTask} 
                     onChange={(e) => setNewTask(e.target.value)} 
+                    data-testid='text-todo'
                 />
                 <button 
                     type='submit'
@@ -99,6 +100,7 @@ const ItemsList = () => {
                 >
                     Add
                 </button>
+                {loading && <div data-testid='loading'>Loading...</div>}
                 {error && <div className='error' data-testid='error'>{error}</div>}
                 <div className='mb-4'>
                 <input
@@ -108,7 +110,7 @@ const ItemsList = () => {
                     placeholder='search todo'
                     className='flex-1 p-2 border rounded'
                     ></input>
-            </div>
+                </div>
                 <ul>
                     {filteredToDos?.map((todo) => (
                         <li key={todo.id}>

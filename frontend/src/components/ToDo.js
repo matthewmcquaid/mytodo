@@ -1,5 +1,4 @@
 import React, { useReducer, useState } from 'react';
-import { Trash2 } from 'lucide-react';
 
 // Reducer function
 const todoReducer = (state, action) => {
@@ -73,7 +72,6 @@ const ToDo = () => {
               onClick={() => dispatch({ type: 'DELETE_TODO', payload: todo.id })}
               className='text-red-500 hover:text-red-700'
             >
-              <Trash2 size={16} />
             </button>
           </li>
         ))}
